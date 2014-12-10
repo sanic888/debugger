@@ -1,0 +1,16 @@
+{
+  "projects": [
+	{
+		"name": "first",
+		"projectPath": "/home/alex/Desktop/speakup/debugger/tests/server1.js"
+	},
+	{
+		"name": "second",
+		"projectPath": "/home/alex/Desktop/speakup/debugger/tests/server2.js"
+	},
+	{
+		"name": "third",
+		"projectPath": "/home/alex/Desktop/speakup/debugger/tests/server3.js"
+	}
+  ]
+}

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script type="text/javascript" src="bower_components/socket.io-client/socket.io.js"></script>
+    <script type="text/javascript" src="bower_components/jquery/dist/jquery.js"></script>
+</head>
+<body>
+<input type="text" value="ttt1" />
+<table>
+	<tr>
+		<th>Project Name</th>
+		<th>Actions</th>
+	</tr>
+</table>
+
+
+	<script>
+		var projects;
+		var table = $('table');
+		var socket = io.connect('http://localhost');
+		socket.on('submitProjects', function (data) {
+			projects = data.projects;
+			var tr;
+			projects.forEach(function(project){
+				tr = $('<tr><td class="name"></td><td class="actions"><input type="button" value="start" name="start"/></td></tr>');
+				tr.attr('data-id', project.id);
+				tr.find('.name').eq(0).text(project.name);
+				table.append(tr);
+			});
+
+			table.find('input[type="button"]').on('click', function(e){
+				var id = $(e.target).closest('tr').attr('data-id');
+				var eventName = $(e.target).attr('name');
+				socket.emit(eventName, {id : id});
+			})
+		});
+	</script>
+</body>
+</html>
